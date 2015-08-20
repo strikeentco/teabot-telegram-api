@@ -1,0 +1,27 @@
+{
+  "name": "teabot-telegram-api",
+  "author": "Alexey Bystrov <strikeentco@gmail.com>",
+  "version": "1.0.0",
+  "description": "A simple wrapper over Telegram Bot Api with additional features.",
+  "keywords": [
+    "telegram",
+    "bot",
+    "api",
+    "teabot",
+    "bot api",
+    "wrapper"
+  ],
+  "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strikeentco/teabot-telegram-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strikeentco/teabot-telegram-api/issues"
+  },
+  "dependencies": {
+    "form-data": "^1.0.0-rc3",
+    "mime-types": "^2.1.4"
+  },
+  "license": "MIT"
+}
