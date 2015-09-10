@@ -76,8 +76,8 @@ function formData(data) {
       value: data.buffer,
       options: {
         filename: fileName,
-        contentType: mime.lookup(fileName),
-      },
+        contentType: mime.lookup(fileName)
+      }
     };
   } else if (data.stream && data.stream instanceof stream.Stream) {
     var fileName = path.basename(data.fileName);
@@ -85,8 +85,8 @@ function formData(data) {
       value: data.stream,
       options: {
         filename: fileName,
-        contentType: mime.lookup(fileName),
-      },
+        contentType: mime.lookup(fileName)
+      }
     };
   } else if (fs.existsSync(data)) {
     var file = path.normalize(data);
@@ -95,8 +95,8 @@ function formData(data) {
       value: fs.createReadStream(file),
       options: {
         filename: fileName,
-        contentType: mime.lookup(fileName),
-      },
+        contentType: mime.lookup(fileName)
+      }
     };
   } else if (!fs.existsSync(data) || data.fileId) {
     return data.fileId || data;
@@ -126,14 +126,14 @@ Api.prototype.setKeyboard = function(keyboard, resize, once, selective) {
   if (!Array.isArray(keyboard)) {
     this.keyboard = {
       hide_keyboard: true,
-      selective: selective || resize || false,
+      selective: selective || resize || false
     };
   } else {
     this.keyboard = {
       keyboard: keyboard,
       resize_keyboard: resize || false,
       one_time_keyboard: once || false,
-      selective: selective || false,
+      selective: selective || false
     };
   }
 
@@ -145,14 +145,15 @@ Api.prototype.getUpdates = function(offset, limit, timeout) {
   return _perform(this.url + 'getUpdates', {
     offset: offset,
     limit: limit,
-    timeout: timeout,
+    timeout: timeout
   });
 };
 
-Api.prototype.setWebhook = function(url) {
-  return _perform(this.url + 'setWebhook', {
-    url: url,
-  });
+Api.prototype.setWebhook = function(url, cert) {
+  var options = {};
+  options.url = url;
+  !cert || (options.certificate = formData(cert));
+  return _perform(this.url + 'setWebhook', options);
 };
 
 Api.prototype.getMe = function() {
@@ -175,7 +176,7 @@ Api.prototype.forwardMessage = function(chatId, fromChatId, messageId) {
   return _perform(this.url + 'forwardMessage', {
     chat_id: chatId,
     from_chat_id: fromChatId,
-    message_id: messageId,
+    message_id: messageId
   });
 };
 
@@ -267,7 +268,7 @@ Api.prototype.sendLocation = function(chatId, lat, lon, options) {
 Api.prototype.sendChatAction = function(chatId, action) {
   return _perform(this.url + 'sendChatAction', {
     chat_id: chatId,
-    action: action,
+    action: action
   });
 };
 
@@ -275,7 +276,7 @@ Api.prototype.getUserProfilePhotos = function(userId, offset, limit) {
   return _perform(this.url + 'getUserProfilePhotos', {
     user_id: userId,
     offset: offset,
-    limit: limit,
+    limit: limit
   });
 };
 

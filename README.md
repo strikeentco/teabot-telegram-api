@@ -1,5 +1,6 @@
 teabot-telegram-api
 ==========
+[![license](https://img.shields.io/github/license/strikeentco/teabot-telegram-api.svg?style=flat)](https://github.com/strikeentco/teabot-telegram-api/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/teabot-telegram-api.svg?style=flat)](https://www.npmjs.com/package/teabot-telegram-api) [![bitHound Score](https://www.bithound.io/github/strikeentco/teabot-telegram-api/badges/score.svg)](https://www.bithound.io/github/strikeentco/teabot-telegram-api)
 
 A simple wrapper over Telegram Bot Api with additional features. Developed for [Teabot](https://github.com/strikeentco/teabot).
 
@@ -13,7 +14,7 @@ var Api = require('teabot-telegram-api');
 var token = 'YOUR_TELEGRAM_BOT_TOKEN';
 
 var botApi = new Api(token);
-botApi.setWebhook('https://example.com/bot');
+botApi.setWebhook('https://example.com/bot', './certificate.pem');
 botApi.getMe().then(function(response) {
   console.log('getMe:', response);
 });
@@ -35,13 +36,16 @@ All methods return a `Promise`, unless otherwise indicated.
 
 A simple method for testing your bot's auth token. Returns basic information about the bot in form of a User object.
 
-## [setWebHook(url)](https://core.telegram.org/bots/api#setwebhook)
+## [setWebHook([url], [certificate])](https://core.telegram.org/bots/api#setwebhook)
 
 Specify an url to receive incoming updates via an outgoing webhook.
 
+To use a self-signed certificate, you need to upload your public key certificate using `certificate` parameter.
+
 ### Params:
 
-* **url** (*String*) - HTTPS url to send updates to. Use an empty string to remove webhook integration.
+* **[url]** (*String*) - HTTPS url to send updates to. Use an empty string to remove webhook integration.
+* **[certificate]** (*String|Object*) - Object with file path, Stream or Buffer. See [InputFile object](#inputfile-object) for more info.
 
 ## [getUpdates([timeout], [limit], [offset])](https://core.telegram.org/bots/api#getupdates)
 
@@ -62,6 +66,7 @@ Send text message.
 * **chatId** (*Integer*) - Unique identifier for the message recipient.
 * **text** (*String*) - Text of the message to be sent.
 * **[options]** (*Object*) - Message options:
+  * **parse_mode** (*String*) - Send `Markdown`, if you want Telegram apps to show [bold, italic and inline URLs](https://core.telegram.org/bots/api#using-markdown) in your bot's message.
   * **disable_web_page_preview** (*Boolean*) - Disables link previews for links in this message.
   * **reply_to_message_id** (*Integer*) - If the message is a reply, ID of the original message.
   * **reply_markup** - Additional interface options.
