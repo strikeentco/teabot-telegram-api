@@ -5,6 +5,7 @@ var https = require('https');
 var qs = require('querystring');
 var Form = require('form-data');
 var mime = require('mime-types');
+var fileType = require('file-type');
 
 function getHTTPS(url) {
   return new Promise(function(resolve, reject) {
@@ -72,11 +73,12 @@ function post(url, params) {
 function formData(data) {
   if (data.buffer && data.buffer instanceof Buffer) {
     var fileName = path.basename(data.fileName);
+    var bufferType = fileType(data.buffer);
     return {
       value: data.buffer,
       options: {
-        filename: fileName,
-        contentType: mime.lookup(fileName)
+        filename: (data.fileName) ? fileName : 'file.' + bufferType.ext,
+        contentType: mime.lookup(fileName) || bufferType.mime
       }
     };
   } else if (data.stream && data.stream instanceof stream.Stream) {
