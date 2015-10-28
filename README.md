@@ -1,3 +1,5 @@
+## Library Deprecated: Use [tg-yarl](https://github.com/strikeentco/tg-yarl) instead
+
 teabot-telegram-api
 ==========
 [![license](https://img.shields.io/github/license/strikeentco/teabot-telegram-api.svg?style=flat)](https://github.com/strikeentco/teabot-telegram-api/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/teabot-telegram-api.svg?style=flat)](https://www.npmjs.com/package/teabot-telegram-api) [![bitHound Score](https://www.bithound.io/github/strikeentco/teabot-telegram-api/badges/score.svg)](https://www.bithound.io/github/strikeentco/teabot-telegram-api)

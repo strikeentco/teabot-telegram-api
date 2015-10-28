@@ -1,7 +1,7 @@
 {
   "name": "teabot-telegram-api",
   "author": "Alexey Bystrov <strikeentco@gmail.com>",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple wrapper over Telegram Bot Api with additional features.",
   "keywords": [
     "telegram",
